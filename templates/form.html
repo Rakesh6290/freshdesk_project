@@ -1,0 +1,107 @@
+{% extends "layout.html" %}
+{% block content %}
+
+<style>
+    .page-title {
+        font-size: 26px;
+        font-weight: 700;
+        color: #2d3748;
+        margin-bottom: 20px;
+        text-align: center;
+    }
+
+    .form-card {
+        border-radius: 14px;
+        background: #ffffff;
+        padding: 28px;
+        border: 1px solid #e5e7eb;
+        box-shadow: 0 3px 10px rgba(0,0,0,0.05);
+        max-width: 650px;
+        margin: auto;
+    }
+
+    .form-label {
+        font-weight: 600;
+        color: #475569;
+    }
+
+    .form-control, .form-select {
+        border-radius: 8px;
+        padding: 10px 14px;
+        font-size: 15px;
+        border: 1px solid #cbd5e1;
+    }
+
+    .form-control:focus, .form-select:focus {
+        border-color: #3b82f6;
+        box-shadow: none;
+    }
+
+    .submit-btn {
+        padding: 12px;
+        font-size: 16px;
+        border-radius: 10px;
+        font-weight: 600;
+    }
+
+    /* Loader */
+    #loader p {
+        font-size: 14px;
+        color: #1e293b;
+        margin-top: 10px;
+    }
+</style>
+
+
+<h2 class="page-title">Create Freshdesk Ticket</h2>
+
+<div class="form-card">
+
+    <form action="/create-ticket" method="POST" onsubmit="showLoader()">
+
+        <div class="mb-3">
+            <label class="form-label">Email</label>
+            <input class="form-control" type="email" name="email" placeholder="user@example.com" required>
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Subject</label>
+            <input class="form-control" type="text" name="subject" placeholder="Ticket subject..." required>
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Description</label>
+            <textarea class="form-control" name="description" rows="4" placeholder="Describe the issue..." required></textarea>
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Priority</label>
+            <select class="form-select" name="priority">
+                <option value="1">Low</option>
+                <option value="2">Medium</option>
+                <option value="3">High</option>
+                <option value="4">Urgent</option>
+            </select>
+        </div>
+
+        <button class="btn btn-primary w-100 submit-btn">
+            + Create Ticket
+        </button>
+    </form>
+
+    <!-- LOADING INDICATOR -->
+    <div id="loader" class="text-center mt-3" style="display:none;">
+        <div class="spinner-border text-primary"></div>
+        <p>Creating Ticket...</p>
+    </div>
+
+</div>
+
+
+<script>
+function showLoader() {
+    document.getElementById("loader").style.display = "block";
+}
+</script>
+
+{% endblock %}

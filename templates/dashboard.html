@@ -1,0 +1,169 @@
+{% extends "layout.html"%}
+{% block content %}
+
+<style>
+/* ===========================
+   MODERN DASHBOARD UI
+   =========================== */
+
+.dashboard-wrapper {
+    padding-top: 10px;
+    animation: fadeIn 0.5s ease;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+
+/* Header Area */
+.dashboard-header {
+    margin-bottom: 25px;
+    padding: 15px 20px;
+    background: rgba(13,110,253,0.07);
+    border-radius: 14px;
+    border-left: 5px solid #0d6efd;
+}
+
+.dashboard-title {
+    font-size: 30px;
+    font-weight: 800;
+    margin: 0;
+    color: #0b1220;
+}
+
+.dashboard-subtitle {
+    font-size: 15px;
+    color: #555;
+    margin-top: 4px;
+}
+
+/* Modern Cards */
+.stat-card {
+    border-radius: 18px;
+    padding: 22px 20px;
+    height: 135px;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    background-size: 180% 180%;
+    animation: gradientFlow 8s ease infinite;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.15);
+    transition: all 0.25s ease;
+}
+
+@keyframes gradientFlow {
+    0% { background-position: 0 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0 50%; }
+}
+
+.stat-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 14px 32px rgba(0,0,0,0.20);
+}
+
+.stat-label {
+    font-size: 16px;
+    opacity: 0.9;
+}
+
+.stat-number {
+    font-size: 34px;
+    font-weight: 800;
+}
+
+.stat-icon {
+    position: absolute;
+    right: 15px;
+    bottom: 12px;
+    font-size: 36px;
+    opacity: 0.20;
+}
+
+/* Gradient Themes */
+.blue-card    { background: linear-gradient(135deg, #0066ff, #4d8bff); }
+.orange-card  { background: linear-gradient(135deg, #ff7a18, #ffb45c); }
+.red-card     { background: linear-gradient(135deg, #ff3d3d, #ff7474); }
+.green-card   { background: linear-gradient(135deg, #25a244, #6adf8c); }
+
+/* Create Button */
+.create-btn {
+    padding: 14px 40px;
+    font-size: 18px;
+    font-weight: 600;
+    border-radius: 12px;
+    box-shadow: 0 6px 18px rgba(13,110,253,0.28);
+    transition: 0.25s ease-in-out;
+}
+
+.create-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 25px rgba(13,110,253,0.4);
+}
+
+</style>
+
+<!-- ===========================
+     DASHBOARD CONTENT
+     =========================== -->
+<div class="dashboard-wrapper">
+
+    <!-- TOP HEADER -->
+    <div class="dashboard-header">
+        <h2 class="dashboard-title">TicketMate Dashboard</h2>
+        <p class="dashboard-subtitle">Quick overview of your ticket activity</p>
+    </div>
+
+    <!-- STATS ROW -->
+    <div class="row g-4">
+
+        <div class="col-md-3">
+            <div class="stat-card blue-card">
+                <p class="stat-label">Total Tickets</p>
+                <p class="stat-number">{{ total }}</p>
+                <i class="stat-icon fas fa-ticket-alt"></i>
+            </div>
+        </div>
+
+        <div class="col-md-3">
+            <div class="stat-card orange-card">
+                <p class="stat-label">Open Tickets</p>
+                <p class="stat-number">{{ open }}</p>
+                <i class="stat-icon fas fa-folder-open"></i>
+            </div>
+        </div>
+
+        <div class="col-md-3">
+            <div class="stat-card red-card">
+                <p class="stat-label">High Priority</p>
+                <p class="stat-number">{{ high }}</p>
+                <i class="stat-icon fas fa-exclamation-circle"></i>
+            </div>
+        </div>
+
+        <div class="col-md-3">
+            <div class="stat-card green-card">
+                <p class="stat-label">Latest Ticket ID</p>
+                <p class="stat-number">{{ latest }}</p>
+                <i class="stat-icon fas fa-hashtag"></i>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- CREATE BUTTON -->
+    <div class="mt-5 text-center">
+        <a href="/create" class="btn btn-primary create-btn">
+            + Create Ticket
+        </a>
+    </div>
+
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/js/all.min.js"></script>
+
+{% endblock %}

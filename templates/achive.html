@@ -1,0 +1,45 @@
+{% extends "layout.html" %}
+
+{% block content %}
+
+<style>
+    .success-card {
+        max-width: 420px;
+        margin: 80px auto;
+        padding: 30px;
+        border-radius: 16px;
+        text-align: center;
+        border: 1px solid #e2e2e2;
+        background: #ffffff;
+        box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+    }
+
+    .success-icon {
+        font-size: 55px;
+        color: #28a745;
+        margin-bottom: 10px;
+    }
+
+    .success-title {
+        font-weight: 700;
+        margin-bottom: 5px;
+    }
+
+    .success-msg {
+        font-size: 15px;
+        opacity: 0.8;
+    }
+</style>
+
+<div class="success-card">
+    <div class="success-icon">✔</div>
+
+    <h3 class="success-title">Ticket Created!</h3>
+    <p class="success-msg">Your Freshdesk ticket was submitted successfully.</p>
+
+    <a href="/" class="btn btn-primary btn-sm mt-3">
+        Go to Dashboard
+    </a>
+</div>
+
+{% endblock %}
